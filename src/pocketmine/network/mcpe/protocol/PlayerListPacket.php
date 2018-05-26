@@ -52,18 +52,11 @@ class PlayerListPacket extends DataPacket{
 				$entry->username = $this->getString();
 				$entry->thirdPartyName = $this->getString();
 				$entry->platform = $this->getVarInt();
-				$skinId = $this->getString();
-				$skinData = $this->getString();
-				$capeData = $this->getString();
-				$geometryName = $this->getString();
-				$geometryData = $this->getString();
-				$entry->skin = new Skin(
-					$skinId,
-					$skinData,
-					$capeData,
-					$geometryName,
-					$geometryData
-				);
+				$entry->skinId = $this->getString();
+				$entry->skinData = $this->getString();
+				$entry->capeData = $this->getString();
+				$entry->geometryModel = $this->getString();
+				$entry->geometryData = $this->getString();
 				$entry->xboxUserId = $this->getString();
 				$this->getString(); //unknown
 			}else{
