@@ -182,7 +182,6 @@ class Effect{
 	public function setDuration(int $ticks){
 		if($ticks < 0 or $ticks > 2147483647){
 			throw new \InvalidArgumentException("Effect duration must be in range of 0 - " . 2147483647);
-			var_dump($ticks);
 		}
 		$this->duration = $ticks;
 		return $this;
@@ -401,7 +400,6 @@ class Effect{
 	 * @param Effect|null $oldEffect
 	 */
 	public function add(Entity $entity, Effect $oldEffect = null){
-		//$entity->getLevel()->getServer()->getPluginManager()->callEvent($ev = new EntityEffectAddEvent($entity, $this, $oldEffect));
 		Server::getInstance()->getPluginManager()->callEvent($ev = new EntityEffectAddEvent($entity, $this, $oldEffect));
 		if($ev->isCancelled()){
 			return;
@@ -460,7 +458,6 @@ class Effect{
 	 * @param bool   $send
 	 */
 	public function remove(Entity $entity, bool $send = true){
-		//$entity->getLevel()->getServer()->getPluginManager()->callEvent($ev = new EntityEffectRemoveEvent($entity, $this));
 		Server::getInstance()->getPluginManager()->callEvent($ev = new EntityEffectRemoveEvent($entity, $this));
 		if($ev->isCancelled()){
 			return;
