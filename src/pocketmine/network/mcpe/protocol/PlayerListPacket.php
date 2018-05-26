@@ -31,44 +31,40 @@ use pocketmine\network\mcpe\protocol\types\PlayerListEntry;
 
 class PlayerListPacket extends DataPacket{
 	const NETWORK_ID = ProtocolInfo::PLAYER_LIST_PACKET;
-
 	const TYPE_ADD = 0;
 	const TYPE_REMOVE = 1;
-
 	/** @var PlayerListEntry[] */
 	public $entries = [];
 	/** @var int */
 	public $type;
-
 	public function clean(){
 		$this->entries = [];
 		return parent::clean();
 	}
-
 	protected function decodePayload(){
 		$this->type = $this->getByte();
 		$count = $this->getUnsignedVarInt();
 		for($i = 0; $i < $count; ++$i){
 			$entry = new PlayerListEntry();
-
 			if($this->type === self::TYPE_ADD){
 				$entry->uuid = $this->getUUID();
 				$entry->entityUniqueId = $this->getEntityUniqueId();
 				$entry->username = $this->getString();
+				$entry->thirdPartyName = $this->getString();
+				$entry->platform = $this->getVarInt();
 				$entry->skinId = $this->getString();
 				$entry->skinData = $this->getString();
 				$entry->capeData = $this->getString();
 				$entry->geometryModel = $this->getString();
 				$entry->geometryData = $this->getString();
 				$entry->xboxUserId = $this->getString();
+				$this->getString(); //unknown
 			}else{
 				$entry->uuid = $this->getUUID();
 			}
-
 			$this->entries[$i] = $entry;
 		}
 	}
-
 	protected function encodePayload(){
 		$this->putByte($this->type);
 		$this->putUnsignedVarInt(count($this->entries));
@@ -77,17 +73,21 @@ class PlayerListPacket extends DataPacket{
 				$this->putUUID($entry->uuid);
 				$this->putEntityUniqueId($entry->entityUniqueId);
 				$this->putString($entry->username);
+				$this->putString($entry->thirdPartyName);
+				$this->putVarInt($entry->platform);
 				$this->putString($entry->skinId);
 				$this->putString($entry->skinData);
 				$this->putString($entry->capeData);
 				$this->putString($entry->geometryModel);
 				$this->putString($entry->geometryData);
 				$this->putString($entry->xboxUserId);
+				$this->putString("");
 			}else{
 				$this->putUUID($entry->uuid);
 			}
 		}
 	}
+
 
 	public function handle(NetworkSession $session) : bool{
 		return $session->handlePlayerList($this);
