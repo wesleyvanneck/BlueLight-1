@@ -1494,8 +1494,8 @@ class Server{
 				"LightningTime" => 6000,
 				"LightningFire" => false,
 				"LimitedCreative" => true,
-				"EntityAIEnabled" => true,
-				"RideableEntity" => true,
+				"EntityAIEnabled" => false,
+				"RideableEntity" => false,
 				"OldAPIPluginLoad" => true,
 
 			]);
