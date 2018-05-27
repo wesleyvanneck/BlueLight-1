@@ -1,4 +1,4 @@
-﻿![BlueLight](https://github.com/BlueLightJapan/BlueLight/blob/master/logo.jpg)</br>
+﻿![BlueLight](https://github.com/BlueLightDutch/BlueLight/blob/master/logo.jpg)</br>
 
 ## our goal is to revive it and give it a great live again and probely it it going to be reriten fully with pmmp again
 
@@ -16,8 +16,6 @@ Help & Support :<br>
 Src https://twitter.com/kametan0730<br>
 PHP7Binary https://twitter.com/haniokasai<br>
 APP https://twitter.com/haniokasai<br>
-<br>
-Download App : GooglePlay https://play.google.com/store/apps/details?id=com.haniokasai.app.pmmp_srv</br>
 Download Phar : Jenkins  <br>
 Circle-Ci (Login require)  <br>
 Download Package : https://github.com/BlueLightJapan/BinaryPackforWindows<br>
