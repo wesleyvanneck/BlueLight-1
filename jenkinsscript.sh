@@ -1,7 +1,7 @@
 #!/bin/sh
 rm -rf *
 
-git clone https://github.com/BlueLightJapan/BlueLight/ bl
+git clone https://github.com/BlueLightDutch/BlueLight/ bl
 git submodule update --init
 cd bl
 mkdir ../artifacts
