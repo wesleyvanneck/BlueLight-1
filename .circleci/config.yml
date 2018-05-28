@@ -6,15 +6,19 @@ jobs:
 
     steps:
       - checkout
-      - run: yum install -y git wget unzip
+      - run:
+        name: Tools install
+        command: yum install -y git wget
       - run: git submodule sync
       - run: git submodule update --init
       - run: mkdir plugins
       - run: mkdir artifacts
       - run: wget https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz
       - run: tar -xvf PHP-7.2-Linux-x86_64.tar.gz
-      - run: wget https://github.com/pmmp/PocketMine-DevTools/archive/master.zip
-      - run: unzip master.zip
-      - run: cp -r PocketMine-DevTools-master plugins
+      - run: wget https://poggit.pmmp.io/r/27781/PocketMine-DevTools.phar
+      - run: mv PocketMine-DevTools.phar plugins
+      - run:
+        name: composer install
+        command: bin/php7/bin/php bin/composer.phar install
       - run: bin/php7/bin/php ci.php
       - run: cp -R plugins/DevTools/* $CIRCLE_ARTIFACTS
