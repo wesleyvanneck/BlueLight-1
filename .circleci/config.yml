@@ -6,7 +6,7 @@ jobs:
 
     steps:
       - checkout
-      - run: yum install -y git
+      - run: yum install -y git wget unzip
       - run: git submodule sync
       - run: git submodule update --init
       - run: rm -rf plugins
