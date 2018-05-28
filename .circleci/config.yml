@@ -11,8 +11,8 @@ jobs:
       - run: git submodule update --init
       - run: mkdir plugins
       - run: mkdir artifacts
-      - run: wget -O php7.2.tar.gz https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz --no-check-certificate
-      - run: tar -xvf php7.2.tar.gz
+      - run: wget https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz
+      - run: tar -xvf PHP-7.2-Linux-x86_64.tar.gz
       - run: wget https://github.com/pmmp/PocketMine-DevTools/archive/master.zip
       - run: unzip master.zip
       - run: cp -r PocketMine-DevTools-master plugins
