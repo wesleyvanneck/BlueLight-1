@@ -1,7 +1,8 @@
-machine:
-  timezone: Asia/Tokyo
-  php:
-    version: 7.2.4
+dependencies:
+  override:
+    - wget -O php7.2.tar.gz https://jenkins.pmmp.io/job/PHP-7.2-Linux-x86_64/lastSuccessfulBuild/artifact/PHP_Linux-x86_64.tar.gz --no-check-certificate
+    - tar -xf php7.2.tar.gz
+    - bin/php7/bin/php composer install 
 
 test:
   post:
@@ -12,8 +13,6 @@ test:
     - rm -rf artifacts
     - mkdir plugins
     - mkdir artifacts
-    - wget -O php7.2.tar.gz https://jenkins.pmmp.io/job/PHP-7.2-Linux-x86_64/lastSuccessfulBuild/artifact/PHP_Linux-x86_64.tar.gz --no-check-certificate
-    - tar -xf php7.2.tar.gz
     - wget https://github.com/pmmp/PocketMine-DevTools/archive/master.zip
     - unzip master.zip
     - cp -r PocketMine-DevTools-master/ plugins/
