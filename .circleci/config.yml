@@ -2,15 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: centos:latest
+      - image: fedora:latest
 
     steps:
       - checkout
       - run: yum install -y git wget unzip
       - run: git submodule sync
       - run: git submodule update --init
-      - run: rm -rf plugins
-      - run: rm -rf artifacts
       - run: mkdir plugins
       - run: mkdir artifacts
       - run: wget -O php7.2.tar.gz https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz --no-check-certificate
