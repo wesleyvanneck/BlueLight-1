@@ -21,4 +21,6 @@ jobs:
           name: composer install
           command: bin/php7/bin/php bin/composer.phar install
       - run: bin/php7/bin/php ci.php
-      - run: cp -R plugins/DevTools/* $CIRCLE_ARTIFACTS
+      - store_artifacts:
+          path: plugins/DevTools
+          destination: Server phar
