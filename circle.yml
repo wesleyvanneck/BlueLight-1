@@ -1,7 +1,9 @@
 dependencies:
   override:
+    - rm -rf bin
     - wget -O php7.2.tar.gz https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz --no-check-certificate
     - tar -xvf php7.2.tar.gz
+    - ls
     - bin/php7/bin/php bin/composer install
 
 test:
@@ -9,7 +11,6 @@ test:
     - git submodule sync
     - git submodule update --init
     - rm -rf plugins
-    - rm -rf bin
     - rm -rf artifacts
     - mkdir plugins
     - mkdir artifacts
