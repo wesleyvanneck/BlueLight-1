@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Tools install
-        command: yum install -y git wget
+          name: Tools install
+          command: yum install -y git wget
       - run: git submodule sync
       - run: git submodule update --init
       - run: mkdir plugins
@@ -18,7 +18,7 @@ jobs:
       - run: wget https://poggit.pmmp.io/r/27781/PocketMine-DevTools.phar
       - run: mv PocketMine-DevTools.phar plugins
       - run:
-        name: composer install
-        command: bin/php7/bin/php bin/composer.phar install
+          name: composer install
+          command: bin/php7/bin/php bin/composer.phar install
       - run: bin/php7/bin/php ci.php
       - run: cp -R plugins/DevTools/* $CIRCLE_ARTIFACTS
