@@ -258,5 +258,7 @@ LICENSE;
 		return $input === "" ? $default : $input;
 	}
 
-
+	public function getLanguage(): baseLang {
+		return $this->lang;
+	}
 }

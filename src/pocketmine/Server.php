@@ -1424,8 +1424,9 @@ class Server{
 	 * @param \AttachableThreadedLogger $logger
 	 * @param string                    $dataPath
 	 * @param string                    $pluginPath
+	 * @param BaseLang					$lang
 	 */
-	public function __construct(\ClassLoader $autoloader, \AttachableThreadedLogger $logger, string $dataPath, string $pluginPath){
+	public function __construct(\ClassLoader $autoloader, \AttachableThreadedLogger $logger, string $dataPath, string $pluginPath, BaseLang $lang = null){
 		if(self::$instance !== null){
 			throw new \InvalidStateException("Only one server instance can exist at once");
 		}
@@ -1470,6 +1471,13 @@ class Server{
 			}
 			$this->config = new Config($this->dataPath . "pocketmine.yml", Config::YAML, []);
 
+			$this->logger->info("Loading bluelight.yml...");
+			if(!file_exists($this->dataPath . "bluelight.yml")){
+				$content = file_get_contents(\pocketmine\RESOURCE_PATH . "bluelight.yml");
+				@file_put_contents($this->dataPath . "bluelight.yml", $content);
+			}
+			$this->config = new Config($this->dataPath . "bluelight.yml", Config::YAML);
+
 			define('pocketmine\DEBUG', (int) $this->getProperty("debug.level", 1));
 
 			if(((int) ini_get('zend.assertions')) > 0 and ((bool) $this->getProperty("debug.assertions.warn-if-enabled", true)) !== false){
@@ -1487,6 +1495,7 @@ class Server{
 				"motd" => \pocketmine\NAME . " Server",
 				"server-port" => 19132,
 				"white-list" => false,
+				"language" => $lang === null? "eng" : $lang->getLang(),
 				"announce-player-achievements" => true,
 				"spawn-protection" => 16,
 				"max-players" => 20,
@@ -1511,7 +1520,7 @@ class Server{
 			]);
 
 			$this->forceLanguage = (bool) $this->getProperty("settings.force-language", false);
-			$this->baseLang = new BaseLang($this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE));
+			$this->baseLang = $lang ?? new BaseLang($this->getConfigString("language", BaseLang::FALLBACK_LANGUAGE));
 			$this->logger->info($this->getLanguage()->translateString("language.selected", [$this->getLanguage()->getName(), $this->getLanguage()->getLang()]));
 
 			$this->memoryManager = new MemoryManager($this);

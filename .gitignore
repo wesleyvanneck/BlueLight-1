@@ -9,6 +9,7 @@ crashdumps/*
 *.phar
 server.properties
 /pocketmine.yml
+/bluelight.yml
 memory_dumps/*
 resource_packs/
 
