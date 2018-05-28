@@ -1,0 +1,12 @@
+# Its a file to set the unique function(s) of BlueLight
+
+# Stable settings
+settings:
+
+# Its a function under development
+devs:
+  b-dev-tools:
+    enable: false
+    old-api-load: false
+  clean-entity: false
+  map: false
