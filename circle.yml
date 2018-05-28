@@ -2,8 +2,7 @@ dependencies:
   override:
     - wget -O php7.2.tar.gz https://jenkins.pmmp.io/job/PHP-7.2-Linux-x86_64/lastSuccessfulBuild/artifact/PHP_Linux-x86_64.tar.gz --no-check-certificate
     - tar -xvf php7.2.tar.gz
-    - tree bin
-    - bin/php7/bin/php composer install
+    - bin/php7/bin/php bin/composer install
 
 test:
   post:
