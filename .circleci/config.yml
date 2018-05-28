@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.2.5-apache-node-browsers
+      - image: centos:latest
 
     steps:
       - checkout
@@ -17,8 +17,5 @@ jobs:
       - run: wget https://github.com/pmmp/PocketMine-DevTools/archive/master.zip
       - run: unzip master.zip
       - run: cp -r PocketMine-DevTools-master plugins
-      - run: ldd --version
-      - run: sudo apt-get update
-      - run: sudo apt-get install libc6
       - run: bin/php7/bin/php ci.php
       - run: cp -R plugins/DevTools/* $CIRCLE_ARTIFACTS
