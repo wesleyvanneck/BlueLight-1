@@ -6,6 +6,7 @@
 ### Languages:
 * [English](#eng),  
 * [日本語](#jpn)
+* [한국어](#kor)
 
 <a name="eng"></a>
 ## English
@@ -51,3 +52,25 @@ BlueLightはMinecraft: BedrockEdition向けサーバーソフトウェアです�
 
 もしバグを見つけた場合には、自由に[issueトラッカーで報告](https://github.com/BlueLightDutch/BlueLight/issues/new)することができます。  
 ただし、**プラグインの問題については報告しないでください**。
+
+<a name="kor"></a>
+## 한국어
+BlueLight is server software for Minecraft: BedrockEdition.  
+This software is based on **[PocketMine-MP](https://github.com/pmmp/PocketMine-MP)**, so most of the original code was written by **pmmp Team**.  
+If we quote the code from other software, _it stated in the file_.
+
+### Our Goal
+처음에는 순수한 포크를 개발하는 것을 목표로합니다.
+우리의 목표는 다음과 같은 서버 소프트웨어를 만드는 것입니다.
+1. pmmp의 최신 기능을 통합합니다.
+2. pmmp가 즉시 구현할 수없는 실험적 기능을 구현합니다.
+
+### Help & Support :
+|kinds|URL|Description|
+|:----|:--|:----------|
+|Source|[Please create new issue](https://github.com/BlueLightDutch/BlueLight/issues/new)||
+|Discord|URL|In preparation|
+|Download Phar|Jenkins|In preparation|
+|Circle-CI (Login require)|Circle-CI|In preparation|
+
+버그를 발견하면 자유롭게 문제를 열 수 있지만 ** 플러그 접속 문제에 대한 문제는 열지 마십시오 **.
