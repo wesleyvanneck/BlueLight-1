@@ -1,7 +1,6 @@
 ﻿<img src="/assets/logo.jpg">
 
 ## BlueLight for 1.4
-> Our goal is to **revive** it and give it a great live again and probely it it going to be reriten fully with pmmp again
 
 ### Languages:
 * [English](#eng),  
