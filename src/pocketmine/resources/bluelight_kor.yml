@@ -1,9 +1,9 @@
-# Its a file to set the unique function(s) of BlueLight
+# BlueLight의 고유 한 기능을 설정하는 파일입니다.
 
-# Stable settings
+# 안정된 설정
 settings:
 
-# Its a function under development
+# 개발중인 기능
 devs:
   b-dev-tools:
     enable: false
