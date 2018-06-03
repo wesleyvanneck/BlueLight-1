@@ -286,8 +286,6 @@ class Server{
 
 	/** @var Level */
 	private $levelDefault = null;
-	
-	public $entityAIEnabled = true;
 
 	/**
 	 * @return string
