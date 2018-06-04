@@ -35,7 +35,7 @@ class NoteBlock extends Spawnable{
 	/** @var int */
 	protected $note = 0;
 	protected $powered = 0;
-	public function __construct(Level $level, CompoundTag $nbt){
+	protected function readSaveData(CompoundTag $nbt) : void{
 		if($nbt->hasTag(self::TAG_NOTE, IntTag::class)){
 			$this->note = $nbt->getInt(self::TAG_NOTE);
 		}
@@ -60,7 +60,7 @@ class NoteBlock extends Spawnable{
 	public function getDefaultName() : string{
 		return "NoteBlock";
 	}
-	public function saveNBT() : void{
+	protected function writeSaveData(CompoundTag $nbt) : void{
 		parent::saveNBT();
 		
 		$this->namedtag->setInt(self::TAG_NOTE, $this->note);
