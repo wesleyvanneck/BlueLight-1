@@ -72,4 +72,4 @@ If we quote the code from other software, _it stated in the file_.
 |Download Phar|Jenkins|In preparation|
 |Circle-CI (Login require)|Circle-CI|In preparation|
 
-버그를 발견하면 자유롭게 문제를 열 수 있지만 ** 플러그 접속 문제에 대한 문제는 열지 마십시오 **.
+버그를 발견하면 자유롭게 문제를 열 수 있지만 플러그 접속 문제에 대한 문제는 열지 마십시오.

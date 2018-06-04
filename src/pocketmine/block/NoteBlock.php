@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  *   ____  _            _      _       _     _
  *  |  _ \| |          | |    (_)     | |   | |
  *  | |_) | |_   _  ___| |     _  __ _| |__ | |_
@@ -15,8 +15,8 @@
  * (at your option) any later version.
  *
  * @author BlueLightDutch Team
- * 
-*/
+ *
+ */
 
 declare(strict_types=1);
 
