@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace pocketmine\tile;
 
-use pocketmine\level\Level;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\IntTag;
@@ -42,7 +41,6 @@ class NoteBlock extends Spawnable{
 		if($nbt->hasTag(self::TAG_POWERED, ByteTag::class)){
 			$this->powered = $nbt->getByte(self::TAG_POWERED);
 		}
-		parent::__construct($level, $nbt);
 	}
 	public function setNote(int $note) : void{
 		$this->note = $note;
@@ -63,14 +61,14 @@ class NoteBlock extends Spawnable{
 	protected function writeSaveData(CompoundTag $nbt) : void{
 		parent::saveNBT();
 		
-		$this->namedtag->setInt(self::TAG_NOTE, $this->note);
-		$this->namedtag->setByte(self::TAG_POWERED, $this->powered);
+		$nbt->setInt(self::TAG_NOTE, $this->note);
+		$nbt->setByte(self::TAG_POWERED, $this->powered);
 	}
 	public function addAdditionalSpawnData(CompoundTag $nbt) : void{
-		if($this->namedtag->hasTag(self::TAG_NOTE, IntTag::class)){
+		if($nbt->hasTag(self::TAG_NOTE, IntTag::class)){
 			$nbt->setTag($this->namedtag->getTag(self::TAG_NOTE));
 		}
-		if($this->namedtag->hasTag(self::TAG_POWERED, ByteTag::class)){
+		if($nbt->hasTag(self::TAG_POWERED, ByteTag::class)){
 			$nbt->setTag($this->namedtag->getTag(self::TAG_POWERED));
 		}
 	}
