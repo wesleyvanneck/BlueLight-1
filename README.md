@@ -23,7 +23,7 @@ Our goal is to create server software that
 |kinds|URL|Description|
 |:----|:--|:----------|
 |Source|[Please create new issue](https://github.com/BlueLightDutch/BlueLight/issues/new)||
-|Discord|URL|[join discord server](https://discord.gg/cpgVdVt)|
+|Discord|[join discord server](https://discord.gg/cpgVdVt)|online|
 |Download Phar|Jenkins|In preparation|
 |Circle-CI (Login require)|Circle-CI|In preparation|
 
@@ -45,7 +45,7 @@ BlueLightはMinecraft: BedrockEdition向けサーバーソフトウェアです�
 |種別|URL|説明|
 |:----|:--|:----------|
 |ソースコード|[issueトラッカーで報告](https://github.com/BlueLightDutch/BlueLight/issues/new)||
-|Discord|URL|[不協和音サーバーに参加する](https://discord.gg/cpgVdVt)||
+|Discord|[不協和音サーバーに参加する](https://discord.gg/cpgVdVt)|オンライン|
 |Pharのダウンロード|Jenkins|準備中|
 |Circle-CI (要ログイン)|Circle-CI|準備中|
 
@@ -68,7 +68,7 @@ If we quote the code from other software, _it stated in the file_.
 |kinds|URL|Description|
 |:----|:--|:----------|
 |Source|[Please create new issue](https://github.com/BlueLightDutch/BlueLight/issues/new)||
-Discord|URL|[join discord server](https://discord.gg/cpgVdVt)|
+|Discord|[join discord server](https://discord.gg/cpgVdVt)|online|
 |Download Phar|Jenkins|In preparation|
 |Circle-CI (Login require)|Circle-CI|In preparation|
 
