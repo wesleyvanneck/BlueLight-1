@@ -45,7 +45,7 @@ BlueLightはMinecraft: BedrockEdition向けサーバーソフトウェアです�
 |種別|URL|説明|
 |:----|:--|:----------|
 |ソースコード|[issueトラッカーで報告](https://github.com/BlueLightDutch/BlueLight/issues/new)||
-|Discord|[不協和音サーバーに参加する](https://discord.gg/cpgVdVt)|オンライン|
+|Discord|[discordサーバーに参加する](https://discord.gg/cpgVdVt)|オンライン|
 |Pharのダウンロード|Jenkins|準備中|
 |Circle-CI (要ログイン)|Circle-CI|準備中|
 
