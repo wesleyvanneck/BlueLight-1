@@ -381,20 +381,8 @@ class Level implements ChunkManager, Metadatable{
 		$this->tickRate = $tickRate;
 	}
 
-<<<<<<< HEAD
-	public function initLevel(){
-		$this->registerGenerator();
-	}
-
-	public function registerGenerator(){
-		$pool = $this->server->getAsyncPool();
-		for($i = 0, $size = $pool->getSize(); $i < $size; ++$i){
-			$pool->submitTaskToWorker(new GeneratorRegisterTask($this, $this->generator, $this->provider->getGeneratorOptions()), $i);
-		}
-=======
 	public function registerGeneratorToWorker(int $worker) : void{
 		$this->server->getAsyncPool()->submitTaskToWorker(new GeneratorRegisterTask($this, $this->generator, $this->provider->getGeneratorOptions()), $worker);
->>>>>>> 88d83e0fc... AsyncPool: Lazy-start AsyncWorkers when they are needed only
 	}
 
 	public function unregisterGenerator(){
