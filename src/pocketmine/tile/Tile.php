@@ -284,5 +284,4 @@ abstract class Tile extends Position{
 	public function getName() : string{
 		return $this->name;
 	}
-
 }
