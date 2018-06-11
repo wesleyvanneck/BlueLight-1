@@ -9,18 +9,28 @@ jobs:
       - run:
           name: Tools install
           command: yum install -y git wget
-      - run: git submodule sync
-      - run: git submodule update --init
-      - run: mkdir plugins
-      - run: mkdir artifacts
-      - run: wget https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz
-      - run: tar -xvf PHP-7.2-Linux-x86_64.tar.gz
-      - run: wget https://poggit.pmmp.io/r/27781/PocketMine-DevTools.phar
-      - run: mv PocketMine-DevTools.phar plugins
       - run:
-          name: composer install
+          name: Git submodules
+          command: |
+            git submodule sync
+            git submodule update --init
+      - run:
+          name: Download & install binary
+          command: |
+            wget https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz
+            tar -xvf PHP-7.2-Linux-x86_64.tar.gz
+      - run:
+          name: Install DevTools
+          command: |
+            mkdir plugins
+            wget https://poggit.pmmp.io/r/27781/PocketMine-DevTools.phar
+            mv PocketMine-DevTools.phar plugins
+      - run:
+          name: Composer install
           command: bin/php7/bin/php bin/composer.phar install
-      - run: bin/php7/bin/php ci.php
+      - run:
+          name: Make server phar
+          command: bin/php7/bin/php ci.php
       - store_artifacts:
           path: plugins/DevTools
           destination: Server phar
