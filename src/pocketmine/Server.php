@@ -1439,13 +1439,6 @@ class Server{
 			$this->dataPath = realpath($dataPath) . DIRECTORY_SEPARATOR;
 			$this->pluginPath = realpath($pluginPath) . DIRECTORY_SEPARATOR;
 
-			$consoleNotifier = new SleeperNotifier();
-			$this->console = new CommandReader($consoleNotifier);
-			$this->tickSleeper->addNotifier($consoleNotifier, function() : void{
-				$this->checkConsole();
-			});
-			$this->console->start(PTHREADS_INHERIT_NONE);
-
 			$version = new VersionString($this->getPocketMineVersion());
 
 			$this->logger->info("Loading pocketmine.yml...");
@@ -1552,6 +1545,13 @@ class Server{
 			$this->baseTickRate = (int) $this->getProperty("level-settings.base-tick-rate", 1);
 
 			$this->doTitleTick = ((bool) $this->getProperty("console.title-tick", true)) && Terminal::hasFormattingCodes();
+
+			$consoleNotifier = new SleeperNotifier();
+			$this->console = new CommandReader($consoleNotifier);
+			$this->tickSleeper->addNotifier($consoleNotifier, function() : void{
+				$this->checkConsole();
+			});
+			$this->console->start(PTHREADS_INHERIT_NONE);
 
 			if($this->getConfigBool("enable-rcon", false)){
 				try{
@@ -2064,9 +2064,11 @@ class Server{
 				$this->properties->save();
 			}
 
-			$this->getLogger()->debug("Closing console");
-			$this->console->shutdown();
-			$this->console->notify();
+			if($this->console instanceof CommandReader){
+				$this->getLogger()->debug("Closing console");
+				$this->console->shutdown();
+				$this->console->notify();
+			}
 
 			if($this->network instanceof Network){
 				$this->getLogger()->debug("Stopping network interfaces");
