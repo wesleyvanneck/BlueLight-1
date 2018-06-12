@@ -80,9 +80,7 @@ namespace pocketmine {
 
 	const NAME = "BlueLight";
 	const VERSION = "1.7dev";
-	/** @deprecated */
-	const API_VERSION = "3.0.0-ALPHA12";
-
+	const API_VERSION = "3.0.0";
 	const CODENAME = "[REDACTED]";
 
 	const MIN_PHP_VERSION = "7.2.0";
