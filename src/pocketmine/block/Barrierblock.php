@@ -25,16 +25,16 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 
-class barrierblock extends Transparent{
+class Barrierblock extends Transparent{
 
-	protected $id = self::barrierblock;
+	protected $id = self::Barrierblock;
 
 	public function __construct(int $meta = 0){
 		$this->meta = $meta;
 	}
 
 	public function getName() : string{
-		return "Barrier";
+		return "Barrierblock";
 	}
 
 	public function getHardness() : float{
