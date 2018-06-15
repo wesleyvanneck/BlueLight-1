@@ -263,6 +263,7 @@ interface BlockIds{
 	public const CHORUS_PLANT = 240;
 	public const STAINED_GLASS = 241;
 
+	public const BARRIER_BLOCK = 166; //can be wrong but wo knows am checking new all day
 	public const PODZOL = 243;
 	public const BEETROOT_BLOCK = 244;
 	public const STONECUTTER = 245;
