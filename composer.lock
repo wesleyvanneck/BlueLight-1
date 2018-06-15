@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wesley-VanNeck/BinaryUtils.git",
-                "reference": " a87e23bd8a326470c3ca39edcfd637de7977829b"
+                "reference": "a87e23bd8a326470c3ca39edcfd637de7977829b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wesley-VanNeck/BinaryUtils/zipball/  a87e23bd8a326470c3ca39edcfd637de7977829b",
-                "reference": " a87e23bd8a326470c3ca39edcfd637de7977829b",
+                "url": "https://api.github.com/repos/Wesley-VanNeck/BinaryUtils/zipball/ a87e23bd8a326470c3ca39edcfd637de7977829b",
+                "reference": "a87e23bd8a326470c3ca39edcfd637de7977829b",
                 "shasum": ""
             },
             "require": {
