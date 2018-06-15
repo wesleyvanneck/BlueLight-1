@@ -27,7 +27,7 @@ use pocketmine\item\Item;
 
 class Barrierblock extends Transparent{
 
-	protected $id = self::Barrierblock;
+	protected $id = self::BARRIER_BLOCK;
 
 	public function __construct(int $meta = 0){
 		$this->meta = $meta;
