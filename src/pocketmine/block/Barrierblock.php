@@ -34,7 +34,7 @@ class barrierblock extends Transparent{
 	}
 
 	public function getName() : string{
-		return "Barrierblock";
+		return "Barrier";
 	}
 
 	public function getHardness() : float{
