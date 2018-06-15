@@ -11,13 +11,13 @@
             "version": "0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pmmp/BinaryUtils.git",
-                "reference": "c824ac67eeeb6899c2a9ec91a769eb9ed6e3f595"
+                "url": "https://github.com/Wesley-VanNeck/BinaryUtils.git",
+                "reference": "836391bc764a4888a5a26ef73937696555e378e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pmmp/BinaryUtils/zipball/c824ac67eeeb6899c2a9ec91a769eb9ed6e3f595",
-                "reference": "c824ac67eeeb6899c2a9ec91a769eb9ed6e3f595",
+                "url": "https://api.github.com/repos/Wesley-VanNeck/BinaryUtils/zipball/ 836391bc764a4888a5a26ef73937696555e378e1",
+                "reference": "836391bc764a4888a5a26ef73937696555e378e1",
                 "shasum": ""
             },
             "require": {
