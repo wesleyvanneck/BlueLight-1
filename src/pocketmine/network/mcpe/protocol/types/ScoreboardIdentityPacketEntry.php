@@ -21,34 +21,14 @@
 
 declare(strict_types=1);
 
-namespace pocketmine\network\mcpe\protocol;
+namespace pocketmine\network\mcpe\protocol\types;
 
-#include <rules/DataPacket.h>
+use pocketmine\utils\UUID;
 
-
-use pocketmine\entity\Attribute;
-use pocketmine\network\mcpe\NetworkSession;
-
-class UpdateAttributesPacket extends DataPacket{
-	public const NETWORK_ID = ProtocolInfo::UPDATE_ATTRIBUTES_PACKET;
-
+class ScoreboardIdentityPacketEntry{
 	/** @var int */
-	public $entityRuntimeId;
-	/** @var Attribute[] */
-	public $entries = [];
-
-	protected function decodePayload(){
-		$this->entityRuntimeId = $this->getEntityRuntimeId();
-		$this->entries = $this->getAttributeList();
-	}
-
-	protected function encodePayload(){
-		$this->putEntityRuntimeId($this->entityRuntimeId);
-		$this->putAttributeList(...$this->entries);
-	}
-
-	public function handle(NetworkSession $session) : bool{
-		return $session->handleUpdateAttributes($this);
-	}
+	public $scoreboardId;
+	/** @var UUID|null */
+	public $uuid;
 
 }

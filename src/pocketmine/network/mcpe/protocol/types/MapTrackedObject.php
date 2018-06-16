@@ -21,34 +21,23 @@
 
 declare(strict_types=1);
 
-namespace pocketmine\network\mcpe\protocol;
+namespace pocketmine\network\mcpe\protocol\types;
 
-#include <rules/DataPacket.h>
-
-
-use pocketmine\entity\Attribute;
-use pocketmine\network\mcpe\NetworkSession;
-
-class UpdateAttributesPacket extends DataPacket{
-	public const NETWORK_ID = ProtocolInfo::UPDATE_ATTRIBUTES_PACKET;
+class MapTrackedObject{
+	public const TYPE_ENTITY = 0;
+	public const TYPE_BLOCK = 1;
 
 	/** @var int */
-	public $entityRuntimeId;
-	/** @var Attribute[] */
-	public $entries = [];
+	public $type;
 
-	protected function decodePayload(){
-		$this->entityRuntimeId = $this->getEntityRuntimeId();
-		$this->entries = $this->getAttributeList();
-	}
+	/** @var int Only set if is TYPE_ENTITY */
+	public $entityUniqueId;
 
-	protected function encodePayload(){
-		$this->putEntityRuntimeId($this->entityRuntimeId);
-		$this->putAttributeList(...$this->entries);
-	}
-
-	public function handle(NetworkSession $session) : bool{
-		return $session->handleUpdateAttributes($this);
-	}
+	/** @var int */
+	public $x;
+	/** @var int */
+	public $y;
+	/** @var int */
+	public $z;
 
 }
