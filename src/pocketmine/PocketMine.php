@@ -236,10 +236,13 @@ namespace pocketmine {
 				$exitCode = -1;
 				break;
 			}
+			ThreadManager::init();
+			new Server($autoloader, $logger, \pocketmine\DATA, \pocketmine\PLUGIN_PATH, $installer->getLanguage());
+			// NOTE: It is used to pass the language from the installer at the initial startup
+		}else {
+			ThreadManager::init();
+			new Server($autoloader, $logger, \pocketmine\DATA, \pocketmine\PLUGIN_PATH);
 		}
-
-		ThreadManager::init();
-		new Server($autoloader, $logger, \pocketmine\DATA, \pocketmine\PLUGIN_PATH);
 
 		$logger->info("Stopping other threads");
 

@@ -288,6 +288,9 @@ class Server{
 	/** @var Level */
 	private $levelDefault = null;
 
+	/** @var Config */
+	private $blConfig;
+
 	/**
 	 * @return string
 	 */
@@ -1452,16 +1455,11 @@ class Server{
 			$this->config = new Config($this->dataPath . "pocketmine.yml", Config::YAML, []);
 
 			$this->logger->info("Loading bluelight.yml...");
-			$lang1 = $this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE);
-			if(file_exists(\pocketmine\RESOURCE_PATH . "bluelight_$lang1.yml")){
-				$content = file_get_contents(\pocketmine\RESOURCE_PATH . "bluelight_$lang1.yml");
-			}else{
-				$content = file_get_contents(\pocketmine\RESOURCE_PATH . "bluelight_eng.yml");
-			}
 			if(!file_exists($this->dataPath . "bluelight.yml")){
+				$content = file_get_contents(\pocketmine\RESOURCE_PATH . "bluelight.yml");
 				@file_put_contents($this->dataPath . "bluelight.yml", $content);
 			}
-			$this->config = new Config($this->dataPath . "bluelight.yml", Config::YAML);
+			$this->blConfig = new Config($this->dataPath . "bluelight.yml", Config::YAML);
 
 			define('pocketmine\DEBUG', (int) $this->getProperty("debug.level", 1));
 
