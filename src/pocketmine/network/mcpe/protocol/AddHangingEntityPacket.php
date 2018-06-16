@@ -60,4 +60,5 @@ class AddHangingEntityPacket extends DataPacket{
 	public function handle(NetworkSession $session) : bool{
 		return $session->handleAddHangingEntity($this);
 	}
+
 }

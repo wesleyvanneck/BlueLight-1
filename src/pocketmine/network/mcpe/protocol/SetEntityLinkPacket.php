@@ -46,4 +46,5 @@ class SetEntityLinkPacket extends DataPacket{
 	public function handle(NetworkSession $session) : bool{
 		return $session->handleSetEntityLink($this);
 	}
+
 }

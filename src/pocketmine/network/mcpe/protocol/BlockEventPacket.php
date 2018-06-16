@@ -57,4 +57,5 @@ class BlockEventPacket extends DataPacket{
 	public function handle(NetworkSession $session) : bool{
 		return $session->handleBlockEvent($this);
 	}
+
 }

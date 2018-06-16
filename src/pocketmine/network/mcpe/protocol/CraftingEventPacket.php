@@ -84,4 +84,5 @@ class CraftingEventPacket extends DataPacket{
 	public function handle(NetworkSession $session) : bool{
 		return $session->handleCraftingEvent($this);
 	}
+
 }

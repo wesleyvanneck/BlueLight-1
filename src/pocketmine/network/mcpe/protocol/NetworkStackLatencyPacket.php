@@ -25,25 +25,23 @@ namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
 
-
 use pocketmine\network\mcpe\NetworkSession;
 
-class SetCommandsEnabledPacket extends DataPacket{
-	public const NETWORK_ID = ProtocolInfo::SET_COMMANDS_ENABLED_PACKET;
+class NetworkStackLatencyPacket extends DataPacket{
+	public const NETWORK_ID = ProtocolInfo::NETWORK_STACK_LATENCY_PACKET;
 
-	/** @var bool */
-	public $enabled;
+	/** @var int */
+	public $timestamp;
 
 	protected function decodePayload(){
-		$this->enabled = $this->getBool();
+		$this->timestamp = $this->getLLong();
 	}
 
 	protected function encodePayload(){
-		$this->putBool($this->enabled);
+		$this->putLLong($this->timestamp);
 	}
 
 	public function handle(NetworkSession $session) : bool{
-		return $session->handleSetCommandsEnabled($this);
+		return $session->handleNetworkStackLatency($this);
 	}
-
 }

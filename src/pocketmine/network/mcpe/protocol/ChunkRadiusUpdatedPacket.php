@@ -45,4 +45,5 @@ class ChunkRadiusUpdatedPacket extends DataPacket{
 	public function handle(NetworkSession $session) : bool{
 		return $session->handleChunkRadiusUpdated($this);
 	}
+
 }

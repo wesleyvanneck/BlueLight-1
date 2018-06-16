@@ -108,4 +108,5 @@ class PlayerListPacket extends DataPacket{
 	public function handle(NetworkSession $session) : bool{
 		return $session->handlePlayerList($this);
 	}
+
 }

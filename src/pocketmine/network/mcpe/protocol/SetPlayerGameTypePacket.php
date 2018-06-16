@@ -45,4 +45,5 @@ class SetPlayerGameTypePacket extends DataPacket{
 	public function handle(NetworkSession $session) : bool{
 		return $session->handleSetPlayerGameType($this);
 	}
+
 }
