@@ -6,7 +6,7 @@
 settings:
  #Three-letter language code for server-side localization
  #Check your language code on https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
- # language: "eng" => Migrated to server.properties
+ language: "eng"
  #Whether to send all strings translated to server locale or let the device handle them
  force-language: false
  shutdown-message: "Server closed"
@@ -23,9 +23,6 @@ settings:
  #Set this approximately to your number of cores.
  #If set to auto, it'll try to detect the number of cores (or use 2)
  async-workers: auto
- #Whether to allow running development builds. Dev builds might crash, break your plugins, corrupt your world and more.
- #It is recommended to avoid using development builds where possible.
- enable-dev-builds: true
 
 memory:
  #Global soft memory limit in megabytes. Set to 0 to disable
@@ -43,7 +40,7 @@ memory:
  #AsyncWorker threads' hard memory limit in megabytes. Set to 0 to disable
  #This will crash the task currently executing on the worker if the task exceeds the limit
  #NOTE: THIS LIMIT APPLIES PER WORKER, NOT TO THE WHOLE PROCESS.
- async-worker-hard-limit: 256
+ async-worker-hard-limit: 1024
 
  #Period in ticks to check memory (default 1 second)
  check-rate: 20
@@ -196,9 +193,3 @@ worlds:
  #world:
  # seed: 404
  # generator: FLAT:2;7,59x1,3x3,2;1;decoration(treecount=80 grasscount=45)
-
-plugins:
- #Setting this to true will cause the legacy structure to be used where plugin data is placed inside the --plugins dir.
- #False will place plugin data under plugin_data under --data.
- #This option exists for backwards compatibility with existing installations.
- legacy-data-dir: false
