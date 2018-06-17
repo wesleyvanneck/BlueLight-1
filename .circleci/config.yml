@@ -31,5 +31,5 @@ jobs:
           name: Make server phar
           command: bin/php7/bin/php ci.php
       - store_artifacts:
-          path: plugins/DevTools
+          path: plugin_data/DevTools
           destination: Server phar

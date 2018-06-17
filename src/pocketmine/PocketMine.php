@@ -229,20 +229,18 @@ namespace pocketmine {
 	@ini_set("opcache.mmap_base", bin2hex(random_bytes(8))); //Fix OPCache address errors
 
 	$exitCode = 0;
+	$installer = null;
 	do{
-		if(!file_exists(\pocketmine\DATA . "server.properties") and !isset($opts["no-wizard"])){
+		if(!file_exists(\pocketmine\DATA . "server.properties") and !isset($opts["no-wizard"])) {
 			$installer = new SetupWizard();
-			if(!$installer->run()){
+			if (!$installer->run()) {
 				$exitCode = -1;
 				break;
 			}
-			ThreadManager::init();
-			new Server($autoloader, $logger, \pocketmine\DATA, \pocketmine\PLUGIN_PATH, $installer->getLanguage());
-			// NOTE: It is used to pass the language from the installer at the initial startup
-		}else {
-			ThreadManager::init();
-			new Server($autoloader, $logger, \pocketmine\DATA, \pocketmine\PLUGIN_PATH);
 		}
+
+		ThreadManager::init();
+		new Server($autoloader, $logger, \pocketmine\DATA, \pocketmine\PLUGIN_PATH, $installer !== null? $installer->getLanguage() : null);
 
 		$logger->info("Stopping other threads");
 
