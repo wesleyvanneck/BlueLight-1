@@ -1,11 +1,11 @@
 <?php
 $time = time();
 $port = rand(1000,60000);
-while(system("/usr/sbin/lsof -i:".$port) != null){
+while(system("nmap -sU -p ".$port." localhost") != null){
 	$port = rand(1000,60000);
 }
 echo "php: ".PHP_VERSION.PHP_EOL;
-echo "port is ".$port.PHP_EOL;
+echo "port: ".$port.PHP_EOL;
 system("echo \"server-port=".$port."\" > server.properties");
 system("echo \"DevTools=on\" > bluelight.properties");
 $server = proc_open(PHP_BINARY . " src/pocketmine/PocketMine.php --no-wizard --disable-readline --settings.enable-dev-builds=1", [
