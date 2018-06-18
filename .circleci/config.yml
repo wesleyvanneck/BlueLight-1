@@ -9,7 +9,7 @@ jobs:
           name: Tools install
           command: |
             yum update -y
-            yum install -y nmap git wget libnsl
+            yum install -y git wget libnsl lsof
       - checkout
       - run:
           name: Git submodules

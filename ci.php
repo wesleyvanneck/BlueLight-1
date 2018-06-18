@@ -1,7 +1,7 @@
 <?php
 $time = time();
 $port = rand(1000,60000);
-while(system("nmap -sU -p ".$port." localhost") != null){
+while(system("lsof -i:".$port) != null){
 	$port = rand(1000,60000);
 }
 echo "php: ".PHP_VERSION.PHP_EOL;
@@ -13,14 +13,18 @@ $server = proc_open(PHP_BINARY . " src/pocketmine/PocketMine.php --no-wizard --d
 	1 => ["pipe", "w"],
 	2 => ["pipe", "w"]
 ], $pipes);
-fwrite($pipes[0], "version\nmakeserver\nstop\n\n");
+fwrite($pipes[0],
+	"version".PHP_EOL.
+	"makeserver".PHP_EOL.
+	"stop".PHP_EOL.PHP_EOL
+);
 while(!feof($pipes[1]) and time()-$time<60*3){
 	echo fgets($pipes[1]);
 }
 fclose($pipes[0]);
 fclose($pipes[1]);
 fclose($pipes[2]);
-echo "\n\nReturn value: ". proc_close($server) ."\n";
+echo "\nReturn value: ". proc_close($server) ."\n";
 if(count(glob("plugin_data/DevTools/*.phar")) === 0){
 	echo "No server phar created!\n";
 	exit(1);
