@@ -1,10 +1,10 @@
 <?php
-// import from clearsky/ci-test
 $time = time();
 $port = rand(1000,60000);
 while(system("/usr/sbin/lsof -i:".$port) != null){
 	$port = rand(1000,60000);
 }
+echo "php: ".PHP_VERSION.PHP_EOL;
 echo "port is ".$port.PHP_EOL;
 system("echo \"server-port=".$port."\" > server.properties");
 system("echo \"DevTools=on\" > bluelight.properties");
