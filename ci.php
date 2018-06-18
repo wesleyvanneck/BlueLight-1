@@ -2,7 +2,7 @@
 // import from clearsky/ci-test
 $time = time();
 $port = rand(1000,60000);
-while(system("lsof -i:".$port) != null){
+while(system("/usr/sbin/lsof -i:".$port) != null){
 	$port = rand(1000,60000);
 }
 echo "port is ".$port.PHP_EOL;
@@ -21,7 +21,7 @@ fclose($pipes[0]);
 fclose($pipes[1]);
 fclose($pipes[2]);
 echo "\n\nReturn value: ". proc_close($server) ."\n";
-if(count(glob("plugins/DevTools/*.phar")) === 0){
+if(count(glob("plugin_data/DevTools/*.phar")) === 0){
 	echo "No server phar created!\n";
 	exit(1);
 }else{

@@ -17,8 +17,8 @@ jobs:
       - run:
           name: Download & install binary
           command: |
-            wget https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Linux-x86_64.tar.gz
-            tar -xvf PHP-7.2-Linux-x86_64.tar.gz
+            wget https://jenkins.pmmp.io/job/PHP-7.2-Linux-x86_64/lastSuccessfulBuild/artifact/PHP_Linux-x86_64.tar.gz
+            tar -xvf PHP_Linux-x86_64.tar.gz
       - run:
           name: Install DevTools
           command: |
