@@ -7,7 +7,9 @@ jobs:
     steps:
       - run:
           name: Tools install
-          command: yum install -y git wget libnsl libnsl-devel
+          command: |
+            yum update -y
+            yum install -y git wget libnsl
       - checkout
       - run:
           name: Git submodules
