@@ -104,7 +104,6 @@ use pocketmine\utils\Terminal;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
-use pocketmine\utils\VersionString;
 
 /**
  * The class that manages everything
@@ -2175,7 +2174,7 @@ class Server{
 		$this->logger->logException($e, $trace);
 
 		$lastError = [
-			"type" => \get_class($e),
+			"type" => get_class($e),
 			"message" => $errstr,
 			"fullFile" => $e->getFile(),
 			"file" => $errfile,
