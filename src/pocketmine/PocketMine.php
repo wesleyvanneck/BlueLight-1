@@ -37,7 +37,7 @@ namespace pocketmine {
 	use pocketmine\wizard\SetupWizard;
 
 	const NAME = "BlueLight";
-	const BASE_VERSION = "3.0.2";
+	const BASE_VERSION = "4.0.0";
 	const IS_DEVELOPMENT_BUILD = true;
 	const BUILD_NUMBER = 0;
 
