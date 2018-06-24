@@ -35,5 +35,5 @@ jobs:
           path: plugin_data/DevTools
           destination: Server phar
       - store_artifacts:
-          path: plugin
+          path: plugins
           destination: DevTools
