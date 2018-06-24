@@ -1,12 +1,9 @@
-defaults: &defaults
-  docker:
-    - image: fedora:latest
-
 version: 2
 
 jobs:
   prepare:
-    <<: *defaults
+    docker:
+      - image: fedora:latest
     steps:
       - run:
           name: Tools install
@@ -38,7 +35,8 @@ jobs:
           - ./*
 
   build:
-    <<: *defaults
+    docker:
+      - image: fedora:latest
     steps:
       - attach_workspace:
           at: ~/
