@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: fedora:latest
-
     steps:
       - run:
           name: Tools install
@@ -35,3 +34,6 @@ jobs:
       - store_artifacts:
           path: plugin_data/DevTools
           destination: Server phar
+      - store_artifacts:
+          path: plugins
+          destination: DevTools
