@@ -1,9 +1,21 @@
 version: 2
-jobs:
-  build:
-    docker:
-      - image: fedora:latest
 
+defaults: &defaults
+  docker:
+    - image: fedora:latest
+
+workflows:
+  version: 2
+  workflows:
+    jobs:
+      - prepare
+      - build:
+        requires:
+          - prepare
+
+jobs:
+  prepare:
+    <<: *defaults
     steps:
       - run:
           name: Tools install
@@ -29,9 +41,15 @@ jobs:
       - run:
           name: Composer install
           command: bin/php7/bin/php bin/composer.phar install
+
+  build:
+    <<: *defaults
+    steps:
       - run:
           name: Make server phar
           command: bin/php7/bin/php ci.php
       - store_artifacts:
-          path: plugin_data/DevTools
+          path: |
+            plugin_data/DevTools
+            plugin
           destination: Server phar
