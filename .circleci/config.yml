@@ -46,10 +46,11 @@ jobs:
           name: Make server phar
           command: bin/php7/bin/php ci.php
       - store_artifacts:
-          path: |
-            plugin_data/DevTools
-            plugin
+          path: plugin_data/DevTools
           destination: Server phar
+      - store_artifacts:
+          path: plugin
+          destination: DevTools
 
 workflows:
   version: 2
