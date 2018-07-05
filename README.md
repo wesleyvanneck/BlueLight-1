@@ -1,6 +1,6 @@
 ﻿<img src="/assets/logo.jpg">
 
-## BlueLight for 1.4
+## BlueLight for 1.6
 
 ### Languages:
 * [English](#eng),  
