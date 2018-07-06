@@ -48,7 +48,7 @@ class MoveEntityAbsolutePacket extends DataPacket{
 	/** @var float */
 	public $zRot;
 
-	protected function decodePayload(){
+	protected function decodePayload() : void {
 		$this->entityRuntimeId = $this->getEntityRuntimeId();
 		$this->flags = $this->getByte();
 		$this->position = $this->getVector3();
@@ -57,7 +57,7 @@ class MoveEntityAbsolutePacket extends DataPacket{
 		$this->zRot = $this->getByteRotation();
 	}
 
-	protected function encodePayload(){
+	protected function encodePayload() : void {
 		$this->putEntityRuntimeId($this->entityRuntimeId);
 		$this->putByte($this->flags);
 		$this->putVector3($this->position);
@@ -66,7 +66,7 @@ class MoveEntityAbsolutePacket extends DataPacket{
 		$this->putByteRotation($this->zRot);
 	}
 
-	public function handle(NetworkSession $session) : bool{
+	public function handle(NetworkSession $session) : bool {
 		return $session->handleMoveEntityAbsolute($this);
 	}
 

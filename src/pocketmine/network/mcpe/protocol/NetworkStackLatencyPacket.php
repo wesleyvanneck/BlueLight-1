@@ -33,11 +33,11 @@ class NetworkStackLatencyPacket extends DataPacket{
 	/** @var int */
 	public $timestamp;
 
-	protected function decodePayload(){
+	protected function decodePayload() : void {
 		$this->timestamp = $this->getLLong();
 	}
 
-	protected function encodePayload(){
+	protected function encodePayload() : void {
 		$this->putLLong($this->timestamp);
 	}
 
