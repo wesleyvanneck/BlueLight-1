@@ -1303,7 +1303,7 @@ class Server{
 		if(($player = $this->getPlayerExact($name)) !== null){
 			$player->recalculatePermissions();
 		}
-		$this->operators->save(true);
+		$this->operators->save();
 	}
 
 	/**
@@ -1323,7 +1323,7 @@ class Server{
 	 */
 	public function addWhitelist(string $name){
 		$this->whitelist->set(strtolower($name), true);
-		$this->whitelist->save(true);
+		$this->whitelist->save();
 	}
 
 	/**
@@ -1712,7 +1712,7 @@ class Server{
 			}
 
 			if($this->properties->hasChanged()){
-				$this->properties->save(true);
+				$this->properties->save();
 			}
 
 			if(!($this->getDefaultLevel() instanceof Level)){
