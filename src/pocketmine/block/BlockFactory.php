@@ -25,14 +25,11 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\level\Position;
-use pocketmine\utils\MainLogger;
 
 /**
  * Manages block registration and instance creation
  */
 class BlockFactory{
-	/** @var \SplFixedArray<Block> */
-	private static $list = null;
 	/** @var \SplFixedArray<Block> */
 	private static $fullList = null;
 
@@ -65,7 +62,6 @@ class BlockFactory{
 	 * this if you need to reset the block factory back to its original defaults for whatever reason.
 	 */
 	public static function init() : void{
-		self::$list = new \SplFixedArray(256);
 		self::$fullList = new \SplFixedArray(4096);
 
 		self::$light = new \SplFixedArray(256);
@@ -241,8 +237,7 @@ class BlockFactory{
 		self::registerBlock(new Wood2());
 		self::registerBlock(new WoodenStairs(Block::ACACIA_STAIRS, 0, "Acacia Stairs"));
 		self::registerBlock(new WoodenStairs(Block::DARK_OAK_STAIRS, 0, "Dark Oak Stairs"));
-		//TODO: SLIME
-
+		self::registerBlock(new SlimeBlock());
 		self::registerBlock(new IronTrapdoor());
 		self::registerBlock(new Prismarine());
 		self::registerBlock(new SeaLantern());
@@ -319,7 +314,6 @@ class BlockFactory{
 		self::registerBlock(new Stonecutter());
 		self::registerBlock(new GlowingObsidian());
 		self::registerBlock(new NetherReactor());
-	    self::registerBlock(new Barrierblock(Block::BARRIER_BLOCK, 0, "Barrier"));
 		//TODO: INFO_UPDATE
 		//TODO: INFO_UPDATE2
 		//TODO: MOVINGBLOCK
@@ -328,16 +322,10 @@ class BlockFactory{
 
 		//TODO: RESERVED6
 
-		foreach(self::$list as $id => $block){
-			if($block === null){
+		for($id = 0, $size = self::$fullList->getSize() >> 4; $id < $size; ++$id){
+			if(self::$fullList[$id << 4] === null){
 				self::registerBlock(new UnknownBlock($id));
 			}
-		}
-
-		/** @var mixed[] $runtimeIdMap */
-		$runtimeIdMap = json_decode(file_get_contents(\pocketmine\RESOURCE_PATH . "runtimeid_table.json"), true);
-		foreach($runtimeIdMap as $k => $obj){
-			self::registerMapping($k, $obj["id"], $obj["data"]);
 		}
 	}
 
@@ -361,8 +349,6 @@ class BlockFactory{
 			throw new \RuntimeException("Trying to overwrite an already registered block");
 		}
 
-		self::$list[$id] = clone $block;
-
 		for($meta = 0; $meta < 16; ++$meta){
 			$variant = clone $block;
 			$variant->setDamage($meta);
@@ -373,7 +359,7 @@ class BlockFactory{
 		self::$transparent[$id] = $block->isTransparent();
 		self::$hardness[$id] = $block->getHardness();
 		self::$light[$id] = $block->getLightLevel();
-		self::$lightFilter[$id] = $block->getLightFilter() + 1; //opacity plus 1 standard light filter
+		self::$lightFilter[$id] = min(15, $block->getLightFilter() + 1); //opacity plus 1 standard light filter
 		self::$diffusesSkyLight[$id] = $block->diffusesSkyLight();
 		self::$blastResistance[$id] = $block->getBlastResistance();
 	}
@@ -427,8 +413,16 @@ class BlockFactory{
 	 * @return bool
 	 */
 	public static function isRegistered(int $id) : bool{
-		$b = self::$list[$id];
+		$b = self::$fullList[$id << 4];
 		return $b !== null and !($b instanceof UnknownBlock);
+	}
+
+	public static function registerStaticRuntimeIdMappings() : void{
+		/** @var mixed[] $runtimeIdMap */
+		$runtimeIdMap = json_decode(file_get_contents(\pocketmine\RESOURCE_PATH . "runtimeid_table.json"), true);
+		foreach($runtimeIdMap as $obj){
+			self::registerMapping($obj["runtimeID"], $obj["id"], $obj["data"]);
+		}
 	}
 
 	/**
@@ -440,6 +434,11 @@ class BlockFactory{
 	 * @return int
 	 */
 	public static function toStaticRuntimeId(int $id, int $meta = 0) : int{
+		/*
+		 * try id+meta first
+		 * if not found, try id+0 (strip meta)
+		 * if still not found, return update! block
+		 */
 		return self::$staticRuntimeIdMap[($id << 4) | $meta] ?? self::$staticRuntimeIdMap[$id << 4] ?? self::$staticRuntimeIdMap[BlockIds::INFO_UPDATE << 4];
 	}
 

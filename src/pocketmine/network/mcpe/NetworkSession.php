@@ -78,9 +78,7 @@ use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
 use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 use pocketmine\network\mcpe\protocol\MoveEntityAbsolutePacket;
 use pocketmine\network\mcpe\protocol\MoveEntityDeltaPacket;
-use pocketmine\network\mcpe\protocol\MoveEntityPacket;
 use pocketmine\network\mcpe\protocol\MovePlayerPacket;
-use pocketmine\network\mcpe\protocol\NetworkStackLatencyPacket;
 use pocketmine\network\mcpe\protocol\NpcRequestPacket;
 use pocketmine\network\mcpe\protocol\PhotoTransferPacket;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
@@ -116,7 +114,6 @@ use pocketmine\network\mcpe\protocol\SetHealthPacket;
 use pocketmine\network\mcpe\protocol\SetLastHurtByPacket;
 use pocketmine\network\mcpe\protocol\SetLocalPlayerAsInitializedPacket;
 use pocketmine\network\mcpe\protocol\SetPlayerGameTypePacket;
-use pocketmine\network\mcpe\protocol\SetScoreboardIdentityPacket;
 use pocketmine\network\mcpe\protocol\SetScorePacket;
 use pocketmine\network\mcpe\protocol\SetSpawnPositionPacket;
 use pocketmine\network\mcpe\protocol\SetTimePacket;
@@ -137,7 +134,6 @@ use pocketmine\network\mcpe\protocol\UpdateAttributesPacket;
 use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
 use pocketmine\network\mcpe\protocol\UpdateBlockSyncedPacket;
 use pocketmine\network\mcpe\protocol\UpdateEquipPacket;
-use pocketmine\network\mcpe\protocol\UpdateSoftEnumPacket;
 use pocketmine\network\mcpe\protocol\UpdateTradePacket;
 use pocketmine\network\mcpe\protocol\WSConnectPacket;
 
@@ -217,19 +213,7 @@ abstract class NetworkSession{
 		return false;
 	}
 
-	public function handleMoveEntityDelta(MoveEntityDeltaPacket $packet) : bool{
-		return false;
-	}
-
-	public function handleMoveEntity(MoveEntityPacket $packet) : bool{
-		return false;
-	}
-
 	public function handleMovePlayer(MovePlayerPacket $packet) : bool{
-		return false;
-	}
-
-	public function handleNetworkStackLatency(NetworkStackLatencyPacket $packet) : bool {
 		return false;
 	}
 
@@ -481,10 +465,6 @@ abstract class NetworkSession{
 		return false;
 	}
 
-	public function handleUpdateSoftEnum(UpdateSoftEnumPacket $packet) : bool {
-		return false;
-	}
-
 	public function handleResourcePackDataInfo(ResourcePackDataInfoPacket $packet) : bool{
 		return false;
 	}
@@ -589,10 +569,6 @@ abstract class NetworkSession{
 		return false;
 	}
 
-	public function handleSetScoreboardIdentity(SetScoreboardIdentityPacket $packet) : bool {
-		return false;
-	}
-
 	public function handleSetScore(SetScorePacket $packet) : bool{
 		return false;
 	}
@@ -605,7 +581,11 @@ abstract class NetworkSession{
 		return false;
 	}
 
-	public function handleSetLocalPlayerAsInitialized(SetLocalPlayerAsInitializedPacket $packet) : bool {
+	public function handleMoveEntityDelta(MoveEntityDeltaPacket $packet) : bool{
+		return false;
+	}
+
+	public function handleSetLocalPlayerAsInitialized(SetLocalPlayerAsInitializedPacket $packet) : bool{
 		return false;
 	}
 }

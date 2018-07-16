@@ -142,10 +142,7 @@ class PacketPool{
 		static::registerPacket(new LabTablePacket());
 		static::registerPacket(new UpdateBlockSyncedPacket());
 		static::registerPacket(new MoveEntityDeltaPacket());
-		static::registerPacket(new SetScoreboardIdentityPacket());
 		static::registerPacket(new SetLocalPlayerAsInitializedPacket());
-		static::registerPacket(new UpdateSoftEnumPacket());
-		static::registerPacket(new NetworkStackLatencyPacket());
 
 		static::registerPacket(new BatchPacket());
 	}
@@ -175,5 +172,4 @@ class PacketPool{
 
 		return $pk;
 	}
-
 }
