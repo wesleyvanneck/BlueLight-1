@@ -52,21 +52,21 @@ class MoveEntityDeltaPacket extends DataPacket{
 	/** @var float */
 	public $zRot = 0.0;
 
-	private function maybeReadCoord(int $flag) : int{
+	private function maybeReadCoord(int $flag) : int {
 		if($this->flags & $flag){
 			return $this->getVarInt();
 		}
 		return 0;
 	}
 
-	private function maybeReadRotation(int $flag) : float{
+	private function maybeReadRotation(int $flag) : float {
 		if($this->flags & $flag){
 			return $this->getByteRotation();
 		}
 		return 0.0;
 	}
 
-	protected function decodePayload(){
+	protected function decodePayload() : void {
 		$this->flags = $this->getByte();
 		$this->xDiff = $this->maybeReadCoord(self::FLAG_HAS_X);
 		$this->yDiff = $this->maybeReadCoord(self::FLAG_HAS_Y);
@@ -76,19 +76,19 @@ class MoveEntityDeltaPacket extends DataPacket{
 		$this->zRot = $this->maybeReadRotation(self::FLAG_HAS_ROT_Z);
 	}
 
-	private function maybeWriteCoord(int $flag, int $val) : void{
+	private function maybeWriteCoord(int $flag, int $val) : void {
 		if($this->flags & $flag){
 			$this->putVarInt($val);
 		}
 	}
 
-	private function maybeWriteRotation(int $flag, float $val) : void{
+	private function maybeWriteRotation(int $flag, float $val) : void {
 		if($this->flags & $flag){
 			$this->putByteRotation($val);
 		}
 	}
 
-	protected function encodePayload(){
+	protected function encodePayload() : void {
 		$this->putByte($this->flags);
 		$this->maybeWriteCoord(self::FLAG_HAS_X, $this->xDiff);
 		$this->maybeWriteCoord(self::FLAG_HAS_Y, $this->yDiff);
@@ -98,7 +98,7 @@ class MoveEntityDeltaPacket extends DataPacket{
 		$this->maybeWriteRotation(self::FLAG_HAS_ROT_Z, $this->zRot);
 	}
 
-	public function handle(NetworkSession $session) : bool{
+	public function handle(NetworkSession $session) : bool {
 		return $session->handleMoveEntityDelta($this);
 	}
 }
