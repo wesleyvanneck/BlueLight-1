@@ -782,7 +782,7 @@ class PluginManager{
 
 		$reflection = new \ReflectionClass(get_class($listener));
 		foreach($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method){
-			if(!$method->isStatic()){
+			if(!$method->isStatic() and $method->getDeclaringClass()->implementsInterface(Listener::class)){
 				$tags = Utils::parseDocComment((string) $method->getDocComment());
 				if(isset($tags["notHandler"])){
 					continue;
@@ -793,7 +793,21 @@ class PluginManager{
 				}catch(\InvalidArgumentException $e){
 					throw new PluginException("Event handler " . get_class($listener) . "->" . $method->getName() . "() declares invalid/unknown priority \"" . $tags["priority"] . "\"");
 				}
-				$ignoreCancelled = isset($tags["ignoreCancelled"]) && strtolower($tags["ignoreCancelled"]) === "true";
+
+				$ignoreCancelled = false;
+				if(isset($tags["ignoreCancelled"])){
+					switch(strtolower($tags["ignoreCancelled"])){
+						case "true":
+						case "":
+							$ignoreCancelled = true;
+							break;
+						case "false":
+							$ignoreCancelled = false;
+							break;
+						default:
+							throw new PluginException("Event handler " . get_class($listener) . "->" . $method->getName() . "() declares invalid @ignoreCancelled value \"" . $tags["ignoreCancelled"] . "\"");
+					}
+				}
 
 				$parameters = $method->getParameters();
 				try{
