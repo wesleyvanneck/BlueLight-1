@@ -24,7 +24,7 @@ Our goal is to create server software that
 |:----|:--|:----------|
 |Source|[Please create new issue](https://github.com/BlueLightDutch/BlueLight/issues/new)||
 |Discord|[join discord server](https://discord.gg/cpgVdVt)|online|
-|Download Phar|Jenkins|In preparation|
+|Download Phar|Jenkins|[jenkins download](https://jenkins.krusic22.com/job/BlueLight/)
 |Circle-CI (Login require)|Circle-CI|In preparation|
 
 If you find bugs,you can open issues freely,But **DO NOT OPEN ISSUE ABOUT PLUGIN PROBLEM**.
