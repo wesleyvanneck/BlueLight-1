@@ -1,5 +1,4 @@
 #!/bin/sh
-rm -rf *
 
 git clone https://github.com/BlueLightJapan/BlueLight/ bl
 git submodule update --init
