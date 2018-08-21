@@ -41,7 +41,7 @@ namespace pocketmine {
 	const IS_DEVELOPMENT_BUILD = true;
 	const BUILD_NUMBER = 0;
 
-	const MIN_PHP_VERSION = "7.0.2";
+	const MIN_PHP_VERSION = "7.2.0";
 
 	function critical_error($message){
 		echo "[ERROR] $message" . PHP_EOL;
